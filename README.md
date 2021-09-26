@@ -40,11 +40,26 @@ alertName() // Juan
 ```
 
 ### var
-pending
+var declarations are globally scoped or function/locally scoped.
+var variables can also be redeclared
+```
+var hi = 'hi';
+var hi = 'hello';
+```
 ### let
-pending
+let is block scoped, variables declared with let are only visible inside the scope they are defined in {}.
+let can be updated but not redeclares
+
 ### const
-pending
+const variables are block scoped, const cannot be updated or redeclared.
+const objects are different, the properties or values inside a const object **CAN** be updated
+```
+const obj = {};
+obj.name = 'Juan';
+obj
+//{name: 'Juan'}
+```
+
 
 ## Data Types
 There are 8 basic data types for variables in javascript with the first 5 being primitive types.
