@@ -14,6 +14,31 @@ We can declare variables to store data by using the `var`, `let`, or `const` key
 - `let` – is a modern variable declaration.
 - `const` – is like let, but the value of the variable can’t be changed.
 
+### Local Variables
+A variable declared inside a function is only visible inside that function
+```
+function alertName() {
+  let name = 'Juan'
+  alert(name);
+}
+
+alertName() // Juan
+```
+
+### Global Variables
+Variables declared in the global scope can be accessed from any inner scope
+
+It's good practice to minimize global variable declarations
+```
+let name = 'Juan'
+
+function alertName() {
+  alert(name);
+}
+
+alertName() // Juan
+```
+
 ### var
 pending
 ### let
@@ -71,3 +96,117 @@ if value is not a string of numbers, the result will be NaN, (not a number)
 ```
 
 ## Loops while and for
+Loops are used to repeat the same code multiple times
+
+### While Loop
+```
+while (condition) {
+  // code
+  // so-called "loop body"
+}
+```
+While the condition is truthy, the code will always be executed, in case of infinite iterations, loops can be killed from browser or server side
+
+### Do While Loop
+```
+do {
+  // loop body
+} while (condition);
+```
+This loop is used when you want the code to be executed **at least once**
+
+### For Loop
+```
+for (begin; condition; step) {
+  // ... loop body ...
+}
+```
+
+for loops can be exited when the condition is no longer truthy, but it can also be broken with a `break` or `return`
+the `return` will break the loop after the 1 iteration
+
+## Functions
+They are the main  building blocks, they allow for code to be called many times without repetition.
+- Functions are values. They can be assigned, copied or declared in any place of the code.
+- Function Declarations are processed before the code block is executed. They are visible everywhere in the block.
+- Function Expressions are created when the execution flow reaches them.
+
+### Function Declaration
+```
+function functionName() {
+  //function body
+}
+```
+
+### Function Call
+functionName();
+
+### Function Parameters
+We can call pass data to a function by using parameters
+```
+function sayHello(name){
+  alert(`Hello ${name}`);
+}
+
+sayHello('Juan'); // Hello Juan
+```
+
+### Returning a value
+- Functions can return a value back into the calling code
+- A function that doesn't return a value is the same as if it returns undefined
+- lines added after the return statement are ignored
+- Functions should only do one action at a time (good practices)
+
+```
+function sum(a, b) {
+  return a + b;
+}
+
+let result = sum(1, 2);
+alert( result ); // 3
+```
+
+### Function Expressions
+A function expression is when a function is assigned to a variable, it still needs () to be called
+```
+function sayHi() {   // (1) create
+  alert( "Hello" );
+}
+
+let func = sayHi;    // (2) copy
+
+func(); // Hello     // (3) run the copy (it works)!
+sayHi(); // Hello    //     this still works too (why wouldn't it)
+```
+
+### Callback functions
+These are functions that are sent as a parameter to a function
+
+```
+function ask(question, yes){
+  if(confirm(question)){
+    yes();
+  }
+}
+
+function showOk(){
+  alert('you confirmed');
+}
+
+ask('Do you agree?', showOk)
+```
+
+## Arrow Functions
+This is a more simple and organized way to write functions
+```
+const func = (param1, param2) => {
+//code body
+return value;
+}
+
+if there is one param, the parenthesis can be ommitted
+const func = param => {}
+
+if the only line inside the code body is a return then the curly braces adn return can be ommitted
+const func = param => value
+```
