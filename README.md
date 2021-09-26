@@ -196,7 +196,7 @@ function showOk(){
 ask('Do you agree?', showOk)
 ```
 
-## Arrow Functions
+### Arrow Functions
 This is a more simple and organized way to write functions
 ```
 const func = (param1, param2) => {
@@ -210,3 +210,24 @@ const func = param => {}
 if the only line inside the code body is a return then the curly braces adn return can be ommitted
 const func = param => value
 ```
+
+## Unit Testing
+Tests are necessary to validate that your code is doing what it's meant to do, they are created in spec files
+In BDD, the spec goes first, followed by implementation. At the end we have both the spec and the code.
+
+The spec can be used in three ways:
+- As Tests – they guarantee that the code works correctly
+- As Docs – the titles of describe and it tell what the function does
+- As Examples – the tests are actually working examples showing how a function can be used
+
+With the spec, we can safely improve, change, even rewrite the function from scratch and make sure it still works right.
+
+## Polyfill and Transpilers
+
+### Polyfills
+Transform modern functions into vanilla functions that can be interpreted by previous versions of javascript
+
+### Transpilers
+Translates code to another source code. It can parse (read and understand) modern code and rewrite it with older syntax so it works in outdated engines.
+Usually, a transpiler runs on your own computer and then deploys the transpiled code to the server (Babel)
+Webpack runs the transpiler on every code change
