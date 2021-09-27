@@ -356,3 +356,8 @@ user.sayHi(); // John
 ```
 
 Arrow functions have no `this`. It's taken from outside
+
+### Arrays
+Array is a special kind of object, suited to storing and managing ordered data items.
+
+
