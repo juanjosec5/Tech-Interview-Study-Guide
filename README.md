@@ -76,7 +76,7 @@ Primitive data types are those that can only store one single value
 
 ### Non-Primitive data types
 
-7. **Objects** -
+7. **Objects** - Store keyed collections of data
 8. **Symbols** - 
 
 ### typeof
@@ -246,3 +246,113 @@ Transform modern functions into vanilla functions that can be interpreted by pre
 Translates code to another source code. It can parse (read and understand) modern code and rewrite it with older syntax so it works in outdated engines.
 Usually, a transpiler runs on your own computer and then deploys the transpiled code to the server (Babel)
 Webpack runs the transpiler on every code change
+
+## Objects
+- Objects are associative arrays with several special features.
+- 
+An object can be created with figure brackets `{…}` with an optional list of properties. A property is a “key: value” pair, where key is a string (also called a “property name”), and value can be anything.
+
+```
+let user = {};
+let user = new Object();
+```
+
+Property values are accessible with dot notation and can be removed with the `delete` keyword. they have to be exact. Square brackets identifiers works with any string and can obtain a property name as the result of an expression
+```
+alert(user.name);
+delete user.name;
+
+let key = "likes birds";
+
+// same as user["likes birds"] = true;
+user[key] = true;
+```
+
+### "in" keyword
+Used to test if a **key** value exists inside an object
+```
+let user = { name: "John", age: 30 };
+
+alert( "age" in user ); // true, user.age exists
+alert( "blabla" in user ); // false, user.blabla doesn't exist
+```
+
+## for...in loop
+Used to loop through the keys of an object
+```
+for (key in object) {
+  // executes the body for each key among object properties
+}
+
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true
+};
+
+for (let key in user) {
+  // keys
+  alert( key );  // name, age, isAdmin
+  // values for the keys
+  alert( user[key] ); // John, 30, true
+}
+```
+
+## Object Reference and copying
+One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.
+
+Two objects are the same if they reference the same object
+```
+let a = {};
+let b = a; // copy the reference
+
+alert( a == b ); // true, both variables reference the same object
+alert( a === b ); // true
+```
+
+Two independent objects will always be different
+```
+let a = {};
+let b = {}; // two independent objects
+
+alert( a == b ); // false
+```
+
+### Cloning Objects
+```
+let user = {
+  name: "John",
+  age: 30
+};
+
+let clone = {}; // the new empty object
+
+// let's copy all user properties into it
+for (let key in user) {
+  clone[key] = user[key];
+}
+
+// now clone is a fully independent object with the same content
+clone.name = "Pete"; // changed the data in it
+
+alert( user.name ); // still John in the original object
+```
+
+### this (context)
+`this` is defined depending on the context for where it is being called. It references the scope it is inside
+```
+let user = {
+  name: "John",
+  age: 30,
+
+  sayHi() {
+    // "this" is the "current object"
+    alert(this.name);
+  }
+
+};
+
+user.sayHi(); // John
+```
+
+Arrow functions have no `this`. It's taken from outside
